@@ -1,0 +1,141 @@
+{
+    "Create Controller": {
+        "prefix": "control",
+        "description": "Create a full controller with imports, package, etc.",
+        "body": [
+            "package controllers",
+            " ",
+            "import play.mvc._",
+            "import javax.inject._",
+            " ",
+            "class ${TM_FILENAME_BASE} @Inject()(val controllerComponents: ControllerComponents) extends BaseController {",
+            " ",
+            "\tdef action = Action { req =>",
+            "\t\t$0",
+            "\t\tOk",
+            "\t}",
+            " ",
+            "}"
+        ]
+    },
+
+    "Create Controller Class": {
+        "prefix": "controlclass",
+        "description": "Create a controller class",
+        "body": [
+            "class ${TM_FILENAME_BASE} @Inject()(val controllerComponents: ControllerComponents) extends BaseController {",
+            "\t$0",
+            "}"
+        ]
+    },
+
+    "Create Action Method": {
+        "prefix": "action",
+        "description": "Create an action method",
+        "body": [
+            "def ${1:action}($2) = Action { req =>",
+            "\t$0",
+            "}"
+        ]
+    },
+
+    "Create Async Action Method": {
+        "prefix": "asyncaction",
+        "description": "Create an async action method",
+        "body": [
+            "def ${1:action}($2) = Action.async { req =>",
+            "\t$0",
+            "}"
+        ]
+    },
+
+    "Form mapping": {
+        "prefix": "form-mapping",
+        "description": "Define a form mapping",
+        "body": [
+            "import play.api.data._",
+            "import play.api.data.Forms._",
+            "import play.api.data.validation.Constraints._",
+            " ",
+            "val form = Form(",
+            "\tmapping(",
+            "\t\t${1:field} -> ${2:field-type}",
+            "\t\t$0",
+            "\t)(${3:Type}.apply)(${3:Type}.unapply)",
+            ")"
+        ]
+    },
+
+    "Bind form": {
+        "prefix": "form-bind",
+        "description": "Bind a form from request",
+        "body": [
+            "${1:form}.bindFromRequest.fold(",
+            "\tformWithErrors => {",
+            "\t\t// form has errors",
+            "\t\tBadRequest($2)",
+            "\t},",
+            "\tformData => {",
+            "\t\t// bind success",
+            "\t\t$0",
+            "\t}",
+            ")"
+        ]
+    }, 
+
+    "JSON Writes": {
+        "prefix": "json-writes",
+        "description": "Define a JSON Writes converter",
+        "body": [
+            "import play.api.libs.json._",
+            " ",
+            "implicit val ${1/(.*)/${1:/downcase}/}Writes = new Writes[${1:Type}] {",
+            "\tdef writes(${1/(.*)/${1:/downcase}/}: ${1:Type}) = Json.obj(",
+            "\t\t\"${2:field}\" -> ${1/(.*)/${1:/downcase}/}.${2:field}",
+            "\t\t$0",
+            "\t)",
+            "}"
+        ]
+    },
+
+    "JSON Automated Writes": {
+        "prefix": "json-writes-auto",
+        "description": "Define a JSON Automated Writes converter",
+        "body": [
+            "import play.api.libs.json._",
+            "implicit val ${1/(.*)/${1:/downcase}/}Writes = Json.writes[${1:Type}] {"
+        ]
+    },
+
+    "JSON Reads": {
+        "prefix": "json-reads",
+        "description": "Define a JSON Reads converter",
+        "body": [
+            "import play.api.libs.json._",
+            "import play.api.libs.functional.syntax._",
+            " ",
+            "implicit val ${1/(.*)/${1:/downcase}/}Reads: Reads[${1:Type}] = (",
+            "\t(JsPath \\ \"${2:field}\").read[${3:field-type}] and",
+            "\t$0",
+            ")"
+        ]
+    },
+
+    "JSON Automated Reads": {
+        "prefix": "json-reads-auto",
+        "description": "Define a JSON Automated Reads converter",
+        "body": [
+            "import play.api.libs.json._",
+            "implicit val ${1/(.*)/${1:/downcase}/}Reads = Json.reads[${1:Type}] {"
+        ]
+    },
+
+    "JSON Format": {
+        "prefix": "json-format",
+        "description": "Define a JSON Automated Format",
+        "body": [
+            "import play.api.libs.json._",
+            "implicit val ${1/(.*)/${1:/downcase}/}Format = Json.format[${1:Type}] {"
+        ]
+    }
+}

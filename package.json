@@ -1,0 +1,46 @@
+{
+    "name": "vscode-play-snippets",
+    "displayName": "PlayFramework Snippets",
+    "description": "PlayFramework Snippets for Java, Scala and Twirl",
+    "version": "0.0.1",
+    "license": "Apache-2.0",
+    "icon": "images/playframework-icon.png",
+    "publisher": "marcospereira",
+    "author": {
+        "name": "Marcos Pereira"
+    },  
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/marcospereira/vscode-play-snippets"
+    },
+    "bugs": {
+        "url": "https://github.com/marcospereira/vscode-play-snippets/issues"
+    },
+    "keywords": [
+        "PlayFramework",
+        "Play Framework",
+        "Play Snippets"
+    ],
+    "engines": {
+        "vscode": "^1.22.0"
+    },
+    "categories": [
+        "Snippets"
+    ],
+    "contributes": {
+        "snippets": [
+            {
+                "language": "java",
+                "path": "./snippets/java-snippets.json"
+            },
+            {
+                "language": "scala",
+                "path": "./snippets/scala-snippets.json"
+            },
+            {
+                "language": "html",
+                "path": "./snippets/twirl-snippets.json"
+            }
+        ]
+    }
+}

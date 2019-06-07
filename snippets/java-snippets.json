@@ -1,0 +1,84 @@
+{
+    "Create Controller": {
+        "prefix": "control",
+        "description": "Create a full controller with imports, package, etc.",
+        "body": [
+            "package controllers;",
+            "",
+            "import play.mvc.*;",
+            "import play.data.*;",
+            "",
+            "import javax.inject.*;",
+            "",
+            "import play.libs.*;",
+            "import java.util.concurrent.*;",
+            "",
+            "public class ${TM_FILENAME_BASE} extends Controller {",
+            "",
+            "\t$0",
+            "",
+            "}"
+        ]
+    },
+
+    "Create Controller Class": {
+        "prefix": "controlclass",
+        "description": "Create a controller class",
+        "body": [
+            "public class ${TM_FILENAME_BASE} extends Controller {",
+            "\t$0",
+            "}"
+        ]
+    },
+
+    "Create Action Method": {
+        "prefix": "action",
+        "description": "Create an action method",
+        "body": [
+            "public Result ${1:action}($2) {",
+            "\t$0",
+            "}"
+        ]
+    },
+
+    "Create Async Action Method": {
+        "prefix": "asyncaction",
+        "description": "Create an async action method",
+        "body": [
+            "public CompletionStage<Result> ${1:action}($2){",
+            "\t$0",
+            "}"
+        ]
+    },
+
+    "Form from request": {
+        "prefix": "form",
+        "description": "Bind a form from request",
+        "body": [
+            "// Remember to inject a play.data.FormFactory",
+            "Form<${1:Type}> ${1/(.*)/${1:/downcase}/}Form = formFactory.form(${1:Type}.class).bindFromRequest();",
+            "if (${1/(.*)/${1:/downcase}/}Form.hasErrors()) {",
+            "\treturn badRequest($2);",
+            "} else {",
+            "\t${1:Type} ${1/(.*)/${1:/downcase}/} = ${1/(.*)/${1:/downcase}/}Form.get();",
+            "\t$0",
+            "}"
+        ]
+    }, 
+
+    "Return result": {
+        "prefix": "result",
+        "description": "Return an action result",
+        "body": [
+            "return ${1:ok}($0);"
+        ]
+    },
+
+    "Send file result": {
+        "prefix": "sendFile",
+        "description": "Send a file as an action result",
+        "body": [
+            "return ok(new java.io.File(\"${1:filepath}\"));"
+        ]
+    }
+}

@@ -1,0 +1,63 @@
+{
+    "For loop block": {
+        "prefix": "foreach",
+        "description": "Iterate over a list",
+        "body": [
+            "@for($1 <- $2) {",
+            "\t$0",
+            "}"
+        ]
+    },
+
+    "If block": {
+        "prefix": "if",
+        "description": "An if block",
+        "body": [
+            "@if($1) {",
+            "\t$0",
+            "}"
+        ]
+    },
+
+    "If-else block": {
+        "prefix": "if-else",
+        "description": "An if-else block",
+        "body": [
+            "@if($1) {",
+            "\t$2",
+            "} else {",
+            "\t$0",
+            "}"
+        ]
+    },
+
+    "Define reusable block": {
+        "prefix": "block",
+        "description": "A reusable block",
+        "body": [
+            "@$1($2) = {",
+            "\t$0",
+            "}"
+        ]
+    },
+
+    "Define reusable value": {
+        "prefix": "defining",
+        "description": "Define a reusable value",
+        "body": [
+            "@defining($1) { $2 =>",
+            "\t$0",
+            "}"
+        ]
+    },
+
+    "Create a form": {
+        "prefix": "form",
+        "description": "Define a reusable value",
+        "body": [
+            "@helper.form(action = routes.${1:Controller}.${2:action}()) {",
+            "\t$0",
+            "}"
+        ]
+    }
+}
